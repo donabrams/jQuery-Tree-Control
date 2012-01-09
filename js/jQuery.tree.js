@@ -111,7 +111,7 @@ $.fn.tree = function(settings){
 		
 		//and now for the native events
 		tree	
-			.focus(function(event){
+			.on('focus', '*', function(event){
 				//deactivate previously active tree node, if one exists
 				tree.find('[tabindex=0]').attr('tabindex','-1').removeClass('tree-item-active');
 				//assign 0 tabindex to focused item
