@@ -79,7 +79,8 @@ $.fn.tree = function(settings){
 			})
 			//expand the entire tree
 			.bind('expandAll',function(event){
-				tree.find('li')
+				tree.addClass("super-expando")
+				    .find('li')
 				    .attr('aria-expanded', 'true')
 				    .find('>a')
 				        .removeClass('tree-parent-collapsed')
@@ -88,7 +89,8 @@ $.fn.tree = function(settings){
 			})
 			//collapse the entire tree
 			.bind('collapseAll',function(event){
-				tree.find('li')                    
+				tree.removeClass("super-expando")
+				    .find('li')                    
 				    .attr('aria-expanded', 'false')
 				    .find('>a')
 				        .addClass('tree-parent-collapsed')
