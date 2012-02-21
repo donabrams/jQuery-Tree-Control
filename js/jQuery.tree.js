@@ -77,6 +77,35 @@ $.fn.tree = function(settings){
 					target.trigger('collapse');
 				}
 			})
+			//expand the entire tree
+			.bind('expandAll',function(event){
+				tree.find('li')
+				    .attr('aria-expanded', 'true')
+				    .find('>a')
+				        .removeClass('tree-parent-collapsed')
+				        .next()
+				        .removeClass('tree-group-collapsed');
+			})
+			//collapse the entire tree
+			.bind('collapseAll',function(event){
+				tree.find('li')                    
+				    .attr('aria-expanded', 'false')
+				    .find('>a')
+				        .addClass('tree-parent-collapsed')
+				        .next()
+				        .addClass('tree-group-collapsed');
+			})
+			//toggle expand/collapse of the entire tree
+			.bind('toggleAll',function(event){
+				if (tree.hasClass("super-expando")) {
+				    tree.removeClass("super-expando")
+				        .trigger('collapseAll');
+				}
+				else {
+				    tree.addClass("super-expando")
+				        .trigger('expandAll');
+				}
+			})
 			//shift focus down one item		
 			.bind('traverseDown',function(event){
 				var target = $(event.target) || tree.find('a[tabindex=0]');
